@@ -15,7 +15,7 @@ public final class InputParser {
         Validator.validateDate(rawInput);
         rawInput = rawInput.strip();
 
-        return NumberConvertor.convertToNumber(rawInput);
+        return NumberConvertor.convertDateToNumber(rawInput);
     }
 
     public static List<String> parseToElements(String rawInput) {
@@ -26,7 +26,7 @@ public final class InputParser {
         for (String s : split) {
             String[] split1 = s.split(SECOND_DELIMITER);
             String menuName = split1[0];
-            int count = NumberConvertor.convertToNumber(split1[1]);
+            int count = NumberConvertor.convertMenuCountToNumber(menuName);
 
             Validator.validateMenuCount(count);
             Validator.validateMenuUnique(menuNames, menuName);
