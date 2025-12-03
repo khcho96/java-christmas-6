@@ -23,7 +23,7 @@ public class ChristmasController {
         OutputView.printStartMessage();
         registerDate();
         OrderedMenuDto orderedMenuDto = calculateOrderedMenu();
-        EventDto eventDto = calculateEvent();
+        EventDto eventDto = calculateEvent(orderedMenuDto);
         OutputView.printResult(orderedMenuDto, eventDto);
     }
 
@@ -52,10 +52,10 @@ public class ChristmasController {
         }
     }
 
-    private EventDto calculateEvent() {
+    private EventDto calculateEvent(OrderedMenuDto orderedMenuDto) {
         while (true) {
             try {
-                return eventService.calculateEvent();
+                return eventService.calculateEvent(orderedMenuDto);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e);
             }
