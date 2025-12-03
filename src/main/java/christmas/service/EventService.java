@@ -1,18 +1,26 @@
 package christmas.service;
 
+import christmas.domain.Event;
 import christmas.domain.OrderDate;
 import christmas.dto.EventDto;
+import christmas.dto.OrderedMenuDto;
 
 public class EventService {
 
-    // TODO: 도메인 객체 인스턴스 변수로 저장
     private OrderDate orderDate;
 
     public void registerDate(int date) {
         orderDate = OrderDate.from(date);
     }
 
-    public EventDto calculateEvent() {
-        return null;
+    public EventDto calculateEvent(OrderedMenuDto orderedMenuDto) {
+        Event event = Event.newInstance();
+        event.calculateChristmasDDayEvent(orderDate);
+        event.calculateWeekdaysEvent(orderDate, orderedMenuDto);
+        event.calculateWeekendEvent(orderDate, orderedMenuDto);
+        event.calculateSpecialEvent(orderDate);
+        event.calculatePresentEvent(orderedMenuDto);
+        event.selectBadge();
+        return event.getEventResult();
     }
 }
