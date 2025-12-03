@@ -20,6 +20,7 @@ public class ChristmasController {
     }
 
     public void run() {
+        OutputView.printStartMessage();
         registerDate();
         OrderedMenuDto orderedMenuDto = calculateOrderedMenu();
         EventDto eventDto = calculateEvent();
@@ -32,6 +33,7 @@ public class ChristmasController {
                 String rawDate = InputView.readDate();
                 Integer date = InputParser.parseToInteger(rawDate);
                 eventService.registerDate(date);
+                return;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e);
             }

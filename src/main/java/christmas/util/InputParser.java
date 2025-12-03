@@ -22,11 +22,12 @@ public final class InputParser {
         Validator.validateMenu(rawInput);
 
         List<String> menuNames = new ArrayList<>();
-        String[] split = rawInput.split(FIRST_DELIMITER);
+        String[] split = rawInput.strip().split(FIRST_DELIMITER);
+
         for (String s : split) {
             String[] split1 = s.split(SECOND_DELIMITER);
             String menuName = split1[0];
-            int count = NumberConvertor.convertMenuCountToNumber(menuName);
+            int count = NumberConvertor.convertMenuCountToNumber(split1[1]);
 
             Validator.validateMenuCount(count);
             Validator.validateMenuUnique(menuNames, menuName);
