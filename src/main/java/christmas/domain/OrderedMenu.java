@@ -5,6 +5,7 @@ import static christmas.constant.ErrorMessage.MENU_MAX_ERROR;
 import static christmas.constant.ErrorMessage.MENU_ONLY_BEVERAGE_ERROR;
 
 import christmas.constant.Menu;
+import christmas.dto.OrderedMenuDto;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +19,7 @@ public class OrderedMenu {
         this.orderedMenu = orderedMenu;
     }
 
-    public static void from(List<String> menuNames) {
+    public static OrderedMenu from(List<String> menuNames) {
         EnumMap<Menu, Integer> orderedMenu = new EnumMap<>(Menu.class);
         for (String menuName : menuNames) {
             Menu menu = Menu.from(menuName);
@@ -29,6 +30,8 @@ public class OrderedMenu {
 
         validateOnlyBeverage(orderedMenu);
         validateCount(orderedMenu);
+
+        return new OrderedMenu(orderedMenu);
     }
 
     private static void validateExistence(Menu menu) {
@@ -57,5 +60,9 @@ public class OrderedMenu {
             totalPrice = menu.getPrice() * orderedMenu.get(menu);
         }
         return totalPrice;
+    }
+
+    public OrderedMenuDto getOrderedMenu() {
+        return new OrderedMenuDto(new EnumMap<>(orderedMenu), calculateTotalPrice());
     }
 }
