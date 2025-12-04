@@ -57,7 +57,7 @@ public class OrderedMenu {
     public int calculateTotalPrice() {
         int totalPrice = 0;
         for (Menu menu : orderedMenu.keySet()) {
-            totalPrice = menu.getPrice() * orderedMenu.get(menu);
+            totalPrice += menu.getPrice() * orderedMenu.get(menu);
         }
         return totalPrice;
     }

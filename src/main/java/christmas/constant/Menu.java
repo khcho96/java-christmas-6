@@ -40,24 +40,16 @@ public enum Menu {
         return NONE;
     }
 
-    public boolean isAppetizer() {
-        return name.equals("애피타이저");
-    }
-
     public boolean isMain() {
-        return name.equals("메인");
+        return category.equals("메인");
     }
 
     public boolean isDessert() {
-        return name.equals("디저트");
+        return category.equals("디저트");
     }
 
     public boolean isBeverage() {
-        return name.equals("음료");
-    }
-
-    public String getCategory() {
-        return category;
+        return category.equals("음료");
     }
 
     public String getName() {

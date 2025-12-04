@@ -48,15 +48,19 @@ public class Event {
             return;
         }
 
-        eventResult.set(WEEKDAYS_EVENT_INDEX, true);
 
         EnumMap<Menu, Integer> menu = orderedMenuDto.orderedMenu();
         List<Menu> desserts = menu.keySet().stream().filter(Menu::isDessert).toList();
+        if (desserts.isEmpty()) {
+            return;
+        }
+
         int dessert_count = 0;
         for (Menu dessert : desserts) {
             dessert_count += menu.get(dessert);
         }
 
+        eventResult.set(WEEKDAYS_EVENT_INDEX, true);
         benefitPrice.set(WEEKDAYS_EVENT_INDEX, 2023 * dessert_count);
     }
 
@@ -67,15 +71,19 @@ public class Event {
             return;
         }
 
-        eventResult.set(WEEKEND_EVENT_INDEX, true);
 
         EnumMap<Menu, Integer> menu = orderedMenuDto.orderedMenu();
         List<Menu> mains = menu.keySet().stream().filter(Menu::isMain).toList();
+        if (mains.isEmpty()) {
+            return;
+        }
+
         int main_count = 0;
         for (Menu main : mains) {
             main_count += menu.get(main);
         }
 
+        eventResult.set(WEEKEND_EVENT_INDEX, true);
         benefitPrice.set(WEEKEND_EVENT_INDEX, 2023 * main_count);
     }
 

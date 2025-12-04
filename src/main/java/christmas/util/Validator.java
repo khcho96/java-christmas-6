@@ -7,7 +7,7 @@ import java.util.List;
 
 public final class Validator {
 
-    private static final String CSV_FORMAT = "^(\\S+-\\d+)+ *(, *(\\S+-\\d+)+ *)*,? *(\\S+-\\d+)+$";
+    private static final String CSV_FORMAT = "^ *(\\S+-\\d+)+ *(, *(\\S+-\\d+)+ *)*$";
 
     private Validator() {}
 
