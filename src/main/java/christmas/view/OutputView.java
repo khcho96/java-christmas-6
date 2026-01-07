@@ -16,9 +16,6 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public static void print() {
-    }
-
     public static void printStartMessage() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
     }
@@ -32,7 +29,7 @@ public class OutputView {
         System.out.println("<주문 메뉴>");
         Map<Menu, Integer> orderMenus = customer.getOrderMenus();
         for (Menu menu : orderMenus.keySet()) {
-            System.out.printf("%s %d개", menu.getName(), orderMenus.get(menu));
+            System.out.printf("%s %d개\n", menu.getName(), orderMenus.get(menu));
         }
         System.out.println();
 
@@ -46,7 +43,7 @@ public class OutputView {
         Map<Event, Integer> events = eventResult.getEventResult();
         for (Event event : events.keySet()) {
             if (event.equals(Event.NONE)) {
-                System.out.println("없음\n");
+                System.out.println("없음");
                 continue;
             }
             System.out.printf("%s: -%,d원\n", event.getName(), events.get(event));
@@ -54,12 +51,19 @@ public class OutputView {
         System.out.println();
 
         System.out.println("<총혜택 금액>");
-        System.out.printf("-%,d원\n\n", eventResult.getTotalEventPrice());
+        System.out.printf("%s원\n\n", convert(eventResult.getTotalEventPrice()));
 
         System.out.println("<할인 후 예상 결제 금액>");
         System.out.printf("%,d원\n\n", customer.getTotalPrice() - eventResult.getTotalEventPriceWithoutPresent());
 
         System.out.println("<12월 이벤트 배지>");
         System.out.println(eventResult.getBadge());
+    }
+
+    private static String convert(int totalEventPrice) {
+        if (totalEventPrice == 0) {
+            return "0";
+        }
+        return String.format("-%,d", totalEventPrice);
     }
 }
