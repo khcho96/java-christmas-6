@@ -9,7 +9,7 @@ public class EventHandler {
 
     public EventResult adjustEvent(Customer customer) {
         if (!isEventPossible(customer)) {
-            return new EventResult();
+            return new EventResult(Event.NONE);
         }
 
         EventResult eventResult = new EventResult();

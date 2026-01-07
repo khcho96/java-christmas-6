@@ -29,6 +29,8 @@ public class ChristmasController {
         });
 
         Result result = christmasService.calculateResult();
+
+        OutputView.printResult(result);
     }
 }
 

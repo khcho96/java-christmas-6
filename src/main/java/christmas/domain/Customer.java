@@ -77,4 +77,8 @@ public class Customer {
 
         return dissertMenus;
     }
+
+    public Map<Menu, Integer> getOrderMenus() {
+        return orderMenus;
+    }
 }
