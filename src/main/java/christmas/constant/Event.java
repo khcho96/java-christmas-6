@@ -20,7 +20,7 @@ public enum Event {
         this.days = days;
     }
 
-    public List<Event> fromDay(int day) {
+    public static List<Event> from(int day) {
         return Arrays.stream(values())
                 .filter(event -> event.days.contains(day))
                 .toList();
